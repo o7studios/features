@@ -1,0 +1,48 @@
+{
+    "name": "o7studios/test-cluster",
+    "id": "test-cluster",
+    "version": "0.0.1",
+    "description": "A feature for automatically installing o7studios test-cluster-environment tools",
+    "documentationURL": "https://github.com/o7studios/features/tree/main/src/test-cluster",
+    "licenseURL": "https://github.com/o7studios/features/blob/main/LICENSE",
+    "keywords": ["o7studios", "test", "testing", "test-cluster", "k8s", "kubernetes"],
+    "privileged": true,
+    "options": {
+        "octopusVersion": {
+            "type": "string",
+            "proposals": ["latest"],
+            "default": "latest",
+            "description": "Select or enter an Octopus Helm chart version"
+        },
+        "cheetahVersion": {
+            "type": "string",
+            "proposals": ["latest"],
+            "default": "latest",
+            "description": "Select or enter an Cheetah Helm chart version"
+        },
+        "installOctopus": {
+            "type": "boolean",
+            "description": "Install Octopus Helm chart inside the test-cluster",
+            "default": true
+        },
+        "installCheetah": {
+            "type": "boolean",
+            "description": "Install Cheetah Helm chart inside the test-cluster",
+            "default": true
+        },
+        "clusterName": {
+            "type": "string",
+            "proposals": ["test-cluster"],
+            "description": "Select or enter a name for the test-cluster",
+            "default": "test-cluster"
+        }
+    },
+    "dependsOn": {
+        "ghcr.io/devcontainers/features/docker-outside-of-docker:1": {},
+        "ghcr.io/rio/features/k3d:1": {},
+        "ghcr.io/devcontainers/features/kubectl-helm-minikube:1": {}
+    },
+    "installsAfter": [
+        "ghcr.io/devcontainers/features/common-utils"
+    ]
+}
